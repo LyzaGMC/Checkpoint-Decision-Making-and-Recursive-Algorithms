@@ -1,0 +1,27 @@
+function isPalindrome(str) {
+  // Helper function to preprocess the string
+  function preprocessString(s) {
+    return s
+      .replace(/[^a-zA-Z0-9]/g, '') // Remove non-alphanumeric characters
+      .toLowerCase(); // Convert to lowercase
+  }
+
+  // Recursive function to check palindrome
+  function checkPalindrome(s, left, right) {
+    if (left >= right) {
+      return true; // Base case: all characters checked
+    }
+    if (s[left] !== s[right]) {
+      return false; // Characters do not match
+    }
+    return checkPalindrome(s, left + 1, right - 1); // Recursive call
+  }
+
+  const processedStr = preprocessString(str);
+  return checkPalindrome(processedStr, 0, processedStr.length - 1);
+}
+
+// Example usage
+const inputString = "Sis!";
+const result = isPalindrome(inputString);
+console.log(`Is the input string a palindrome? ${result}`);
